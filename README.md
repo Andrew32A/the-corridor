@@ -9,3 +9,4 @@ Work in progress!
 - Set up trello board
 - Update movement script
 - Create trigger prefab component for events
+- Bake lighting properly with windows pc
