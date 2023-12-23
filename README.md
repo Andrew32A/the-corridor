@@ -12,3 +12,4 @@ Work in progress!
 - Bake lighting properly with intel cpu
 - Ambient sound
 - Main menu (Start, Options, Quit)
+- Build proper story/plot (Reason why the player is here and why things are happening)
