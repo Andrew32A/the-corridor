@@ -11,4 +11,4 @@ Work in progress!
 - Create trigger prefab component for events
 - Bake lighting properly with intel cpu
 - Ambient sound
-- Main menu
+- Main menu (Start, Options, Quit)
