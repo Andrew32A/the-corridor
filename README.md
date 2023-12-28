@@ -7,7 +7,6 @@ Work in progress!
 ## Todo
 
 - Set up trello board
-- Update movement script
 - Create trigger prefab component for events
 - Bake lighting properly with intel cpu
 - Ambient sound
