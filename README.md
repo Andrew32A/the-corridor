@@ -12,7 +12,7 @@ Work in progress!
 ## Todo
 
 - Set up trello board
-- Create trigger prefab component for events
+- Create trigger prefab component for events, could import script from Netrunner
 - Bake lighting properly with intel cpu
 - Ambient sound/SFX
 - Main menu (Start, Options, Quit)
