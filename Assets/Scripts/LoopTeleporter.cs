@@ -6,6 +6,12 @@ public class LoopTeleporter : MonoBehaviour
 {
     public CharacterController playerController;
     public Transform teleportDestination;
+    private PlayerMovement playerMovementScript;
+
+    private void Start()
+    {
+        playerMovementScript = playerController.GetComponent<PlayerMovement>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,8 +20,10 @@ public class LoopTeleporter : MonoBehaviour
             Debug.Log("Teleporting and rotating player with adjusted relative position");
 
             // relative position of the player to the teleporter
-            Vector3 entryPositionRelativeToTeleporter = other.transform.position - transform.position;
+            Vector3 currentVelocity = playerMovementScript.GetVelocity();
+            Debug.Log("Current velocity: " + currentVelocity);
 
+            Vector3 entryPositionRelativeToTeleporter = other.transform.position - transform.position;
             // adjust the relative position 90 degrees to the left
             Vector3 adjustedRelativePosition = new Vector3(entryPositionRelativeToTeleporter.z, entryPositionRelativeToTeleporter.y, -entryPositionRelativeToTeleporter.x);
 
@@ -31,6 +39,8 @@ public class LoopTeleporter : MonoBehaviour
 
             // re-enable the Character Controller after moving and rotating
             playerController.enabled = true;
+
+            playerMovementScript.SetVelocity(currentVelocity);
         }
     }
 }

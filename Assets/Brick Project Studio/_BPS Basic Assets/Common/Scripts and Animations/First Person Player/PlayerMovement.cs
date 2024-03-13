@@ -2,36 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SojaExiles
-
+public class PlayerMovement : MonoBehaviour
 {
-    public class PlayerMovement : MonoBehaviour
+    public CharacterController controller;
+    public float speed = 1.5f;
+    public float gravity = -1f;
+    private Vector3 velocity;
+    bool isGrounded;
+
+    void Update()
     {
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
 
-        public CharacterController controller;
+        Vector3 move = transform.right * x + transform.forward * z;
+        controller.Move(move * speed * Time.deltaTime);
 
-        public float speed = 5f;
-        public float gravity = -15f;
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
+    }
 
-        Vector3 velocity;
+    public Vector3 GetVelocity()
+    {
+        return velocity;
+    }
 
-        bool isGrounded;
-
-        // Update is called once per frame
-        void Update()
-        {
-
-            float x = Input.GetAxis("Horizontal");
-            float z = Input.GetAxis("Vertical");
-
-            Vector3 move = transform.right * x + transform.forward * z;
-
-            controller.Move(move * speed * Time.deltaTime);
-
-            velocity.y += gravity * Time.deltaTime;
-
-            controller.Move(velocity * Time.deltaTime);
-
-        }
+    public void SetVelocity(Vector3 newVelocity)
+    {
+        velocity = newVelocity;
     }
 }
