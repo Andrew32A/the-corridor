@@ -12,9 +12,6 @@ Work in progress!
 
 ## Todo
 
-- Set up trello board
-- Create trigger prefab component for events, could import script from Netrunner
-- Bake lighting properly with intel cpu
 - Ambient sound, music, and sound effects
 - Main menu (Start, Options, Quit)
 - Settings menu (Resolution, Fullscreen, Volume, Keybinds, etc.)
