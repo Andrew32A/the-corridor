@@ -2,12 +2,13 @@
 
 Work in progress!
 <br>
-<img src="https://github.com/Andrew32A/the-corridor/blob/main/Images/demo.gif" align="center">
 
-<details>
+<!-- <img src="https://github.com/Andrew32A/the-corridor/blob/main/Images/demo.gif" align="center"> -->
+
+<!-- <details>
 <summary>Screenshots</summary>
 <img src="https://github.com/Andrew32A/the-corridor/blob/main/Images/screenshot1.png" align="center">
-</details>
+</details> -->
 
 ## Todo
 
