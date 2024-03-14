@@ -40,7 +40,7 @@ public class Observer : MonoBehaviour
             opencloseDoor doorScript = door.GetComponent<opencloseDoor>();
             if (doorScript != null)
             {
-                StartCoroutine(doorScript.silentClosing());
+                doorScript.silentClosing();
             }
             else
             {

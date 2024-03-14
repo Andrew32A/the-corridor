@@ -103,10 +103,9 @@ public class opencloseDoor : MonoBehaviour
 	}
 
 	// for resetting doors on loop
-	public IEnumerator silentClosing()
+	public void silentClosing()
 	{
 		openandclose.Play("Closing");
 		open = false;
-		yield return new WaitForSeconds(.5f);
 	}
 }
