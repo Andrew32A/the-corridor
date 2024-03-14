@@ -84,7 +84,7 @@ public class opencloseDoor : MonoBehaviour
 		}
 	}
 
-	IEnumerator opening()
+	public IEnumerator opening()
 	{
 		print("You are opening the door");
 		openandclose.Play("Opening");
@@ -93,11 +93,19 @@ public class opencloseDoor : MonoBehaviour
 		yield return new WaitForSeconds(.5f);
 	}
 
-	IEnumerator closing()
+	public IEnumerator closing()
 	{
 		print("You are closing the door");
 		openandclose.Play("Closing");
 		audioSource.PlayOneShot(closeSound);
+		open = false;
+		yield return new WaitForSeconds(.5f);
+	}
+
+	// for resetting doors on loop
+	public IEnumerator silentClosing()
+	{
+		openandclose.Play("Closing");
 		open = false;
 		yield return new WaitForSeconds(.5f);
 	}

@@ -16,6 +16,9 @@ public class Observer : MonoBehaviour
     [Header("Teleporters")]
     public GameObject[] teleporters;
 
+    [Header("Global Values")]
+    public int loopCount = 0;
+
     void Start()
     {
 
@@ -24,5 +27,25 @@ public class Observer : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void PlayerEnteredTeleporter()
+    {
+        Debug.Log("Player entered the teleporter's trigger area");
+        loopCount++;
+        Debug.Log("Loop count: " + loopCount);
+
+        foreach (GameObject door in doors)
+        {
+            opencloseDoor doorScript = door.GetComponent<opencloseDoor>();
+            if (doorScript != null)
+            {
+                StartCoroutine(doorScript.silentClosing());
+            }
+            else
+            {
+                Debug.LogError("Door does not have an opencloseDoor component.", door);
+            }
+        }
     }
 }

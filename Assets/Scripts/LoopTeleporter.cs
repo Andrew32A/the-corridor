@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LoopTeleporter : MonoBehaviour
 {
+    public Observer observer;
     public CharacterController playerController;
     public Transform teleportDestination;
     private PlayerMovement playerMovementScript;
@@ -18,6 +19,9 @@ public class LoopTeleporter : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Teleporting and rotating player with adjusted relative position");
+
+            // notify oberserver that the player entered the teleporter
+            observer.PlayerEnteredTeleporter();
 
             // relative position of the player to the teleporter
             Vector3 currentVelocity = playerMovementScript.GetVelocity();
