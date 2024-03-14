@@ -8,7 +8,6 @@ public class EntranceTrigger : MonoBehaviour
 
     void Start()
     {
-        // opencloseDoor doorScript = entranceDoor.GetComponent<opencloseDoor>();
     }
 
     void OnTriggerEnter(Collider other)
