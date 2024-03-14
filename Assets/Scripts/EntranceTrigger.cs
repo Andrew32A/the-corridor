@@ -19,7 +19,12 @@ public class EntranceTrigger : MonoBehaviour
         {
             Debug.Log("Player entered the entrance trigger area");
             opencloseDoor doorScript = entranceDoor.GetComponent<opencloseDoor>();
-            StartCoroutine(doorScript.closing());
+
+            // if door is open, close it
+            if (doorScript.open)
+            {
+                StartCoroutine(doorScript.closing());
+            }
 
             // set collider active state to false
             GetComponent<Collider>().enabled = false;

@@ -18,7 +18,12 @@ public class ExitTrigger : MonoBehaviour
         {
             Debug.Log("Player entered the exit trigger area");
             opencloseDoor doorScript = exitDoor.GetComponent<opencloseDoor>();
-            StartCoroutine(doorScript.closing());
+
+            // if door is open, close it
+            if (doorScript.open)
+            {
+                StartCoroutine(doorScript.closing());
+            }
 
             // set collider active state to false
             GetComponent<Collider>().enabled = false;
