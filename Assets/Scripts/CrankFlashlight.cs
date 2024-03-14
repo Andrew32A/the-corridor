@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CrankFlashlight : MonoBehaviour
 {
+    public Observer observer;
     public Light flashlight;
     private bool isCranking = false;
     private float crankingTime = 0f;
@@ -47,6 +48,7 @@ public class CrankFlashlight : MonoBehaviour
             {
                 // subtle flicker when fully powered
                 flashlight.intensity = Mathf.Lerp(1.8f, 2f, Mathf.PingPong(Time.time * 10, 1));
+                CastRay();
             }
         }
     }
@@ -96,10 +98,13 @@ public class CrankFlashlight : MonoBehaviour
         if (!isFullyPowered) return;
 
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
         {
-            // TODO: check for cursed object tag trigger then send data (eg. dispel(objectHit)) to observer so it can handle the dispelling
-            // Debug.Log(hit.transform.name);
+            if (hit.collider.CompareTag("DispelHitbox"))
+            {
+                Debug.Log(hit.collider.gameObject);
+                observer.DispelCursedObject(hit.collider.gameObject);
+            }
         }
     }
 }

@@ -52,4 +52,16 @@ public class Observer : MonoBehaviour
             }
         }
     }
+
+    public void DispelCursedObject(GameObject cursedObject)
+    {
+        if (cursedObject.name == "cursedToothbrush")
+        {
+            cursedToothbrush.SetActive(false);
+            normalToothbrush.SetActive(true);
+        }
+
+        // TODO: add more cursed objects here
+    }
+
 }
