@@ -11,6 +11,10 @@ public class opencloseDoor : MonoBehaviour
 	private TextMeshProUGUI interactText;
 	private bool playerInRange = false;
 
+	public AudioClip openSound;
+	public AudioClip closeSound;
+	private AudioSource audioSource;
+
 	void Start()
 	{
 		// open = false;
@@ -31,6 +35,12 @@ public class opencloseDoor : MonoBehaviour
 		if (interactText != null)
 		{
 			interactText.enabled = false;
+		}
+
+		audioSource = GetComponent<AudioSource>();
+		if (audioSource == null)
+		{
+			Debug.LogError("No AudioSource component found on the object.");
 		}
 	}
 
@@ -78,6 +88,7 @@ public class opencloseDoor : MonoBehaviour
 	{
 		print("You are opening the door");
 		openandclose.Play("Opening");
+		audioSource.PlayOneShot(openSound);
 		open = true;
 		yield return new WaitForSeconds(.5f);
 	}
@@ -86,6 +97,7 @@ public class opencloseDoor : MonoBehaviour
 	{
 		print("You are closing the door");
 		openandclose.Play("Closing");
+		audioSource.PlayOneShot(closeSound);
 		open = false;
 		yield return new WaitForSeconds(.5f);
 	}
