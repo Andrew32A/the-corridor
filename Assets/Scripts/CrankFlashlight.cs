@@ -35,11 +35,19 @@ public class CrankFlashlight : MonoBehaviour
             return;
         }
 
-        // flickering effect
-        if (isCranking && !isFullyPowered)
+        // flickering effect for cranking and full power
+        if (isCranking)
         {
-            float intensity = Mathf.Lerp(0.01f, 0.2f, Mathf.PingPong(Time.time, 0.1f));
-            flashlight.intensity = intensity;
+            if (!isFullyPowered)
+            {
+                // flicker more noticeably while winding up
+                flashlight.intensity = Mathf.Lerp(0.2f, 0.5f, Mathf.PingPong(Time.time * 10, 1));
+            }
+            else
+            {
+                // subtle flicker when fully powered
+                flashlight.intensity = Mathf.Lerp(1.8f, 2f, Mathf.PingPong(Time.time * 10, 1));
+            }
         }
     }
 
@@ -63,11 +71,6 @@ public class CrankFlashlight : MonoBehaviour
             flashlight.intensity = 0f;
             Invoke(nameof(ResetCooldown), cooldownTime);
         }
-        else if (isFullyPowered)
-        {
-            // only cast ray when fully charged
-            CastRay();
-        }
     }
 
     private void StopCranking()
@@ -75,16 +78,12 @@ public class CrankFlashlight : MonoBehaviour
         flashlight.intensity = 0f;
         isCranking = false;
         crankingTime = 0f;
-        isFullyPowered = false; // Reset full power status
+        isFullyPowered = false; // reset full power status
     }
 
     private void EnableFullBrightness()
     {
-        if (isCranking) // check if still cranking after 1.5 seconds
-        {
-            flashlight.intensity = 2f; // set to full brightness
-            isFullyPowered = true; // flashlight is fully powered
-        }
+        isFullyPowered = true; // flashlight is fully powered
     }
 
     private void ResetCooldown()
