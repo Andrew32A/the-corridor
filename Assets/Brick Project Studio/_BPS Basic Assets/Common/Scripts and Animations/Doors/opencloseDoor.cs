@@ -53,10 +53,17 @@ public class opencloseDoor : MonoBehaviour
 			{
 				ShowInteractText(true);
 
-				if (Input.GetMouseButtonDown(0))
+				// input for f key
+				if (Input.GetKeyDown(KeyCode.F))
 				{
 					StartCoroutine(open ? closing() : opening());
 				}
+
+				// input for left click
+				// if (Input.GetMouseButtonDown(0))
+				// {
+				// 	StartCoroutine(open ? closing() : opening());
+				// }
 			}
 			else
 			{
