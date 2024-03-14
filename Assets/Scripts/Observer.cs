@@ -16,6 +16,10 @@ public class Observer : MonoBehaviour
     [Header("Teleporters")]
     public GameObject[] teleporters;
 
+    [Header("Cursed Objects")]
+    public GameObject normalToothbrush;
+    public GameObject cursedToothbrush;
+
     [Header("Global Values")]
     public int loopCount = 0;
 
