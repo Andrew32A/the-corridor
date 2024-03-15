@@ -72,43 +72,47 @@ public class Observer : MonoBehaviour
 
     public void AddRandomCursedObject()
     {
-        currentCursedObjects++;
-
         int randomIndex = Random.Range(0, 6); // second arg needs to be +1 for some reason?
         Debug.Log("Random index: " + randomIndex);
 
-        if (randomIndex == 0)
+        if (randomIndex == 0 && cursedToothbrush.activeSelf == false)
         {
+            currentCursedObjects++;
             cursedToothbrush.SetActive(true);
             normalToothbrush.SetActive(false);
         }
 
-        if (randomIndex == 1)
+        if (randomIndex == 1 && cursedZombie.activeSelf == false)
         {
+            currentCursedObjects++;
             cursedZombie.SetActive(true);
             normalZombie.SetActive(false);
         }
 
-        if (randomIndex == 2)
+        if (randomIndex == 2 && cursedHighFiveMan.activeSelf == false)
         {
+            currentCursedObjects++;
             cursedHighFiveMan.SetActive(true);
             normalHighFiveMan.SetActive(false);
         }
 
-        if (randomIndex == 3)
+        if (randomIndex == 3 && cursedAnimalPaintings.activeSelf == false)
         {
+            currentCursedObjects++;
             cursedAnimalPaintings.SetActive(true);
             normalAnimalPaintings.SetActive(false);
         }
 
-        if (randomIndex == 4)
+        if (randomIndex == 4 && cursedMirror.activeSelf == false)
         {
+            currentCursedObjects++;
             cursedMirror.SetActive(true);
             normalMirror.SetActive(false);
         }
 
-        if (randomIndex == 5)
+        if (randomIndex == 5 && cursedChessBoard.activeSelf == false)
         {
+            currentCursedObjects++;
             cursedChessBoard.SetActive(true);
             normalChessBoard.SetActive(false);
         }
