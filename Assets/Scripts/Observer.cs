@@ -23,6 +23,9 @@ public class Observer : MonoBehaviour
     public GameObject normalZombie; // may need to rename it?
     public GameObject cursedZombie;
 
+    public GameObject normalHighFiveMan;
+    public GameObject cursedHighFiveMan;
+
     [Header("Global Values")]
     public int loopCount = 0;
 
@@ -71,20 +74,35 @@ public class Observer : MonoBehaviour
             cursedZombie.SetActive(true);
             normalZombie.SetActive(false);
         }
+
+        if (randomIndex == 2)
+        {
+            cursedHighFiveMan.SetActive(true);
+            normalHighFiveMan.SetActive(false);
+        }
     }
 
     public void DispelCursedObject(GameObject cursedObject)
     {
+        // toothbrush
         if (cursedObject.name == "cursedToothbrush")
         {
             cursedToothbrush.SetActive(false);
             normalToothbrush.SetActive(true);
         }
 
+        // bed zombie
         if (cursedObject.name == "cursedZombie")
         {
             cursedZombie.SetActive(false);
             normalZombie.SetActive(true);
+        }
+
+        // high five man
+        if (cursedObject.name == "cursedHighFiveMan" || cursedObject.name == "cursedHighFiveMan2")
+        {
+            cursedHighFiveMan.SetActive(false);
+            normalHighFiveMan.SetActive(true);
         }
 
         // TODO: add more cursed objects here
