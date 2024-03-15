@@ -26,9 +26,9 @@ public class LoopTeleporter : MonoBehaviour
             // relative position of the player to the teleporter
             Vector3 currentVelocity = playerMovementScript.GetVelocity();
             Debug.Log("Current velocity: " + currentVelocity);
-
             Vector3 entryPositionRelativeToTeleporter = other.transform.position - transform.position;
-            // adjust the relative position 90 degrees to the left
+
+            // adjust the relative position 90 degrees to the right
             Vector3 adjustedRelativePosition = new Vector3(entryPositionRelativeToTeleporter.z, entryPositionRelativeToTeleporter.y, -entryPositionRelativeToTeleporter.x);
 
             // disable the Character Controller before moving and rotating

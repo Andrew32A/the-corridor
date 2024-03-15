@@ -65,7 +65,8 @@ public class Observer : MonoBehaviour
     {
         currentCursedObjects++;
 
-        int randomIndex = Random.Range(0, 2);
+        int randomIndex = Random.Range(0, 3);
+        Debug.Log("Random index: " + randomIndex);
         if (randomIndex == 0)
         {
             cursedToothbrush.SetActive(true);

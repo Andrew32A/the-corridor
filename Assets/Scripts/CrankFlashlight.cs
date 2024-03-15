@@ -10,10 +10,18 @@ public class CrankFlashlight : MonoBehaviour
     private float cooldownTime = 3f; // time the flashlight stays off after being used too long
     private bool isOnCooldown = false;
     private bool isFullyPowered = false;
+    public AudioClip windupSound;
+    private AudioSource audioSource;
 
     private void Start()
     {
         flashlight.intensity = 0f;
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            Debug.LogError("No AudioSource component found on the object.");
+        }
     }
 
     private void Update()
@@ -21,10 +29,18 @@ public class CrankFlashlight : MonoBehaviour
         // check for left mouse button input
         if (Input.GetMouseButton(0) && !isOnCooldown)
         {
+            if (!audioSource.isPlaying)
+            {
+                audioSource.PlayOneShot(windupSound);
+            }
             StartCranking();
         }
         else
         {
+            if (audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
             StopCranking();
         }
 
