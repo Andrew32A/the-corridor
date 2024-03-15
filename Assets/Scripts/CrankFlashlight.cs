@@ -13,9 +13,15 @@ public class CrankFlashlight : MonoBehaviour
     public AudioClip windupSound;
     private AudioSource audioSource;
 
+    // TODO: implement flashlight charges to prevent player from spamming
+    // public int currentFlashlightCharges = 0;
+    // public int maxFlashlightCharges = 3;
+
     private void Start()
     {
         flashlight.intensity = 0f;
+
+        // currentFlashlightCharges = maxFlashlightCharges;
 
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
