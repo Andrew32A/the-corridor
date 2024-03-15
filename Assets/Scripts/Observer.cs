@@ -20,6 +20,9 @@ public class Observer : MonoBehaviour
     public GameObject normalToothbrush;
     public GameObject cursedToothbrush;
 
+    public GameObject normalZombie; // may need to rename it?
+    public GameObject cursedZombie;
+
     [Header("Global Values")]
     public int loopCount = 0;
 
@@ -37,6 +40,7 @@ public class Observer : MonoBehaviour
     {
         Debug.Log("Player entered the teleporter's trigger area");
         loopCount++;
+        AddRandomCursedObject();
         Debug.Log("Loop count: " + loopCount);
 
         foreach (GameObject door in doors)
@@ -53,12 +57,34 @@ public class Observer : MonoBehaviour
         }
     }
 
+    public void AddRandomCursedObject()
+    {
+        int randomIndex = Random.Range(0, 2);
+        if (randomIndex == 0)
+        {
+            cursedToothbrush.SetActive(true);
+            normalToothbrush.SetActive(false);
+        }
+
+        if (randomIndex == 1)
+        {
+            cursedZombie.SetActive(true);
+            normalZombie.SetActive(false);
+        }
+    }
+
     public void DispelCursedObject(GameObject cursedObject)
     {
         if (cursedObject.name == "cursedToothbrush")
         {
             cursedToothbrush.SetActive(false);
             normalToothbrush.SetActive(true);
+        }
+
+        if (cursedObject.name == "cursedZombie")
+        {
+            cursedZombie.SetActive(false);
+            normalZombie.SetActive(true);
         }
 
         // TODO: add more cursed objects here
