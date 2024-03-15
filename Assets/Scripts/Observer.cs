@@ -26,6 +26,9 @@ public class Observer : MonoBehaviour
     public GameObject normalHighFiveMan;
     public GameObject cursedHighFiveMan;
 
+    public GameObject normalAnimalPaintings;
+    public GameObject cursedAnimalPaintings;
+
     [Header("Global Values")]
     public int loopCount = 0;
     public int currentCursedObjects = 0;
@@ -65,7 +68,7 @@ public class Observer : MonoBehaviour
     {
         currentCursedObjects++;
 
-        int randomIndex = Random.Range(0, 3);
+        int randomIndex = Random.Range(0, 4); // second arg needs to be +1 for some reason?
         Debug.Log("Random index: " + randomIndex);
         if (randomIndex == 0)
         {
@@ -83,6 +86,12 @@ public class Observer : MonoBehaviour
         {
             cursedHighFiveMan.SetActive(true);
             normalHighFiveMan.SetActive(false);
+        }
+
+        if (randomIndex == 3)
+        {
+            cursedAnimalPaintings.SetActive(true);
+            normalAnimalPaintings.SetActive(false);
         }
     }
 
@@ -105,11 +114,19 @@ public class Observer : MonoBehaviour
         }
 
         // high five man
-        if (cursedObject.name == "cursedHighFiveMan" || cursedObject.name == "cursedHighFiveMan2")
+        if (cursedObject.name == "cursedHighFiveMan1" || cursedObject.name == "cursedHighFiveMan2")
         {
             currentCursedObjects--;
             cursedHighFiveMan.SetActive(false);
             normalHighFiveMan.SetActive(true);
+        }
+
+        // animal paintings
+        if (cursedObject.name == "cursedAnimalPaintings1" || cursedObject.name == "cursedAnimalPaintings2")
+        {
+            currentCursedObjects--;
+            cursedAnimalPaintings.SetActive(false);
+            normalAnimalPaintings.SetActive(true);
         }
 
         // TODO: add more cursed objects here
