@@ -29,6 +29,12 @@ public class Observer : MonoBehaviour
     public GameObject normalAnimalPaintings;
     public GameObject cursedAnimalPaintings;
 
+    public GameObject normalMirror;
+    public GameObject cursedMirror;
+
+    public GameObject normalChessBoard;
+    public GameObject cursedChessBoard;
+
     [Header("Global Values")]
     public int loopCount = 0;
     public int currentCursedObjects = 0;
@@ -68,8 +74,9 @@ public class Observer : MonoBehaviour
     {
         currentCursedObjects++;
 
-        int randomIndex = Random.Range(0, 4); // second arg needs to be +1 for some reason?
+        int randomIndex = Random.Range(0, 6); // second arg needs to be +1 for some reason?
         Debug.Log("Random index: " + randomIndex);
+
         if (randomIndex == 0)
         {
             cursedToothbrush.SetActive(true);
@@ -92,6 +99,18 @@ public class Observer : MonoBehaviour
         {
             cursedAnimalPaintings.SetActive(true);
             normalAnimalPaintings.SetActive(false);
+        }
+
+        if (randomIndex == 4)
+        {
+            cursedMirror.SetActive(true);
+            normalMirror.SetActive(false);
+        }
+
+        if (randomIndex == 5)
+        {
+            cursedChessBoard.SetActive(true);
+            normalChessBoard.SetActive(false);
         }
     }
 
@@ -127,6 +146,22 @@ public class Observer : MonoBehaviour
             currentCursedObjects--;
             cursedAnimalPaintings.SetActive(false);
             normalAnimalPaintings.SetActive(true);
+        }
+
+        // mirror
+        if (cursedObject.name == "cursedMirror")
+        {
+            currentCursedObjects--;
+            cursedMirror.SetActive(false);
+            normalMirror.SetActive(true);
+        }
+
+        // chess board
+        if (cursedObject.name == "cursedChessBoard")
+        {
+            currentCursedObjects--;
+            cursedChessBoard.SetActive(false);
+            normalChessBoard.SetActive(true);
         }
 
         // TODO: add more cursed objects here
