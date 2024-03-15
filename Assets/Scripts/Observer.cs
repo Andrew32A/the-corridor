@@ -26,15 +26,15 @@ public class Observer : MonoBehaviour
     [Header("Global Values")]
     public int loopCount = 0;
 
-    void Start()
-    {
+    // void Start()
+    // {
 
-    }
+    // }
 
-    void Update()
-    {
+    // void Update()
+    // {
 
-    }
+    // }
 
     public void PlayerEnteredTeleporter()
     {
