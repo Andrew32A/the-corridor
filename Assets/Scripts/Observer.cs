@@ -41,6 +41,7 @@ public class Observer : MonoBehaviour
     [Header("Global Values")]
     public int loopCount = 0;
     public int currentCursedObjects = 0;
+    public int maxCursedObjectsForGameOver = 3; // need to change it in unity editor // TODO: bug where it's actually +1, dont have time to fix right now. it's because the teleporter looks at this value before it's updated
 
     // void Start()
     // {
@@ -76,10 +77,11 @@ public class Observer : MonoBehaviour
     public void AddRandomCursedObject()
     {
         int randomIndex = Random.Range(0, 7); // second arg needs to be +1 for some reason?
-        Debug.Log("Random index: " + randomIndex);
+        Debug.Log("Random index: " + randomIndex); // i have doubts that this is truely random... lol
 
         if (randomIndex == 0 && cursedToothbrush.activeSelf == false)
         {
+            Debug.Log("Added cursed toothbrush");
             currentCursedObjects++;
             cursedToothbrush.SetActive(true);
             normalToothbrush.SetActive(false);
@@ -87,6 +89,7 @@ public class Observer : MonoBehaviour
 
         if (randomIndex == 1 && cursedZombie.activeSelf == false)
         {
+            Debug.Log("Added cursed zombie");
             currentCursedObjects++;
             cursedZombie.SetActive(true);
             normalZombie.SetActive(false);
@@ -94,6 +97,7 @@ public class Observer : MonoBehaviour
 
         if (randomIndex == 2 && cursedHighFiveMan.activeSelf == false)
         {
+            Debug.Log("Added cursed high five man");
             currentCursedObjects++;
             cursedHighFiveMan.SetActive(true);
             normalHighFiveMan.SetActive(false);
@@ -101,6 +105,7 @@ public class Observer : MonoBehaviour
 
         if (randomIndex == 3 && cursedAnimalPaintings.activeSelf == false)
         {
+            Debug.Log("Added cursed animal paintings");
             currentCursedObjects++;
             cursedAnimalPaintings.SetActive(true);
             normalAnimalPaintings.SetActive(false);
@@ -108,6 +113,7 @@ public class Observer : MonoBehaviour
 
         if (randomIndex == 4 && cursedMirror.activeSelf == false)
         {
+            Debug.Log("Added cursed mirror");
             currentCursedObjects++;
             cursedMirror.SetActive(true);
             normalMirror.SetActive(false);
@@ -115,6 +121,7 @@ public class Observer : MonoBehaviour
 
         if (randomIndex == 5 && cursedChessBoard.activeSelf == false)
         {
+            Debug.Log("Added cursed chess board");
             currentCursedObjects++;
             cursedChessBoard.SetActive(true);
             normalChessBoard.SetActive(false);
@@ -122,10 +129,13 @@ public class Observer : MonoBehaviour
 
         if (randomIndex == 6 && cursedPlug.activeSelf == false)
         {
+            Debug.Log("Added cursed plug");
             currentCursedObjects++;
             cursedPlug.SetActive(true);
             normalPlug.SetActive(false);
         }
+
+        Debug.Log("Current cursed objects: " + currentCursedObjects);
     }
 
     public void DispelCursedObject(GameObject cursedObject)
