@@ -28,6 +28,7 @@ public class Observer : MonoBehaviour
 
     [Header("Global Values")]
     public int loopCount = 0;
+    public int currentCursedObjects = 0;
 
     // void Start()
     // {
@@ -36,7 +37,7 @@ public class Observer : MonoBehaviour
 
     // void Update()
     // {
-
+    //     Debug.Log("Current cursed objects: " + currentCursedObjects);
     // }
 
     public void PlayerEnteredTeleporter()
@@ -62,6 +63,8 @@ public class Observer : MonoBehaviour
 
     public void AddRandomCursedObject()
     {
+        currentCursedObjects++;
+
         int randomIndex = Random.Range(0, 2);
         if (randomIndex == 0)
         {
@@ -87,6 +90,7 @@ public class Observer : MonoBehaviour
         // toothbrush
         if (cursedObject.name == "cursedToothbrush")
         {
+            currentCursedObjects--;
             cursedToothbrush.SetActive(false);
             normalToothbrush.SetActive(true);
         }
@@ -94,6 +98,7 @@ public class Observer : MonoBehaviour
         // bed zombie
         if (cursedObject.name == "cursedZombie")
         {
+            currentCursedObjects--;
             cursedZombie.SetActive(false);
             normalZombie.SetActive(true);
         }
@@ -101,6 +106,7 @@ public class Observer : MonoBehaviour
         // high five man
         if (cursedObject.name == "cursedHighFiveMan" || cursedObject.name == "cursedHighFiveMan2")
         {
+            currentCursedObjects--;
             cursedHighFiveMan.SetActive(false);
             normalHighFiveMan.SetActive(true);
         }
