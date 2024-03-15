@@ -35,6 +35,9 @@ public class Observer : MonoBehaviour
     public GameObject normalChessBoard;
     public GameObject cursedChessBoard;
 
+    public GameObject normalPlug;
+    public GameObject cursedPlug;
+
     [Header("Global Values")]
     public int loopCount = 0;
     public int currentCursedObjects = 0;
@@ -72,7 +75,7 @@ public class Observer : MonoBehaviour
 
     public void AddRandomCursedObject()
     {
-        int randomIndex = Random.Range(0, 6); // second arg needs to be +1 for some reason?
+        int randomIndex = Random.Range(0, 7); // second arg needs to be +1 for some reason?
         Debug.Log("Random index: " + randomIndex);
 
         if (randomIndex == 0 && cursedToothbrush.activeSelf == false)
@@ -115,6 +118,13 @@ public class Observer : MonoBehaviour
             currentCursedObjects++;
             cursedChessBoard.SetActive(true);
             normalChessBoard.SetActive(false);
+        }
+
+        if (randomIndex == 6 && cursedPlug.activeSelf == false)
+        {
+            currentCursedObjects++;
+            cursedPlug.SetActive(true);
+            normalPlug.SetActive(false);
         }
     }
 
@@ -166,6 +176,14 @@ public class Observer : MonoBehaviour
             currentCursedObjects--;
             cursedChessBoard.SetActive(false);
             normalChessBoard.SetActive(true);
+        }
+
+        // plug
+        if (cursedObject.name == "cursedPlug")
+        {
+            currentCursedObjects--;
+            cursedPlug.SetActive(false);
+            normalPlug.SetActive(true);
         }
 
         // TODO: add more cursed objects here
