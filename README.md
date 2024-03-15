@@ -3,7 +3,7 @@
 Work in progress!
 <br>
 
-<!-- <img src="https://github.com/Andrew32A/the-corridor/blob/main/Images/demo.gif" align="center"> -->
+<img src="https://github.com/Andrew32A/the-corridor/blob/main/Images/the-corridor-logo.png" align="center">
 
 <!-- <details>
 <summary>Screenshots</summary>
