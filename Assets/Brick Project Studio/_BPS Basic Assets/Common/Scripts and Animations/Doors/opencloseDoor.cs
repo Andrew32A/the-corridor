@@ -40,7 +40,7 @@ public class opencloseDoor : MonoBehaviour
 		audioSource = GetComponent<AudioSource>();
 		if (audioSource == null)
 		{
-			Debug.LogError("No AudioSource component found on the object.");
+			// Debug.Log("No AudioSource component found on the object.");
 		}
 	}
 
@@ -93,7 +93,7 @@ public class opencloseDoor : MonoBehaviour
 
 	public IEnumerator opening()
 	{
-		print("You are opening the door");
+		// print("You are opening the door");
 		openandclose.Play("Opening");
 		audioSource.PlayOneShot(openSound);
 		open = true;
@@ -102,7 +102,7 @@ public class opencloseDoor : MonoBehaviour
 
 	public IEnumerator closing()
 	{
-		print("You are closing the door");
+		// print("You are closing the door");
 		openandclose.Play("Closing");
 		audioSource.PlayOneShot(closeSound);
 		open = false;

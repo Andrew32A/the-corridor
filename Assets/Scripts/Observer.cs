@@ -55,10 +55,10 @@ public class Observer : MonoBehaviour
 
     public void PlayerEnteredTeleporter()
     {
-        Debug.Log("Player entered the teleporter's trigger area");
+        // Debug.Log("Player entered the teleporter's trigger area");
         loopCount++;
         AddRandomCursedObject();
-        Debug.Log("Loop count: " + loopCount);
+        // Debug.Log("Loop count: " + loopCount);
 
         foreach (GameObject door in doors)
         {
@@ -135,7 +135,7 @@ public class Observer : MonoBehaviour
             normalPlug.SetActive(false);
         }
 
-        Debug.Log("Current cursed objects: " + currentCursedObjects);
+        // Debug.Log("Current cursed objects: " + currentCursedObjects);
     }
 
     public void DispelCursedObject(GameObject cursedObject)
