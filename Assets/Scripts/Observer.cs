@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Observer : MonoBehaviour
 {
@@ -50,6 +51,8 @@ public class Observer : MonoBehaviour
 
     [Header("Dev Tools")]
     public bool devMode = false;
+    public GameObject devModeTextObject;
+    public TextMeshProUGUI devModeText;
 
     // void Start()
     // {
@@ -66,6 +69,12 @@ public class Observer : MonoBehaviour
             enableFlashlightTutorialTrigger();
             enablePlayerFlashlight();
             player.GetComponent<PlayerMovement>().speed = 15f;
+        }
+
+        if (devMode)
+        {
+            devModeTextObject.SetActive(true);
+            devModeText.text = "Active Anomalies: " + currentCursedObjects;
         }
     }
 
