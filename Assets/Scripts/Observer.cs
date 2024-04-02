@@ -66,7 +66,6 @@ public class Observer : MonoBehaviour
         {
             Debug.Log("Dev mode enabled");
             devMode = true;
-            enableFlashlightTutorialTrigger();
             enablePlayerFlashlight();
             player.GetComponent<PlayerMovement>().speed = 15f;
         }
