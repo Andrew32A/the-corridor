@@ -4,11 +4,14 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
 
+// WARNING: future me, if you need this script, reuse the one from netrunner, this one is updated for JUST the corridor
+
 public class DisplayTextTrigger : MonoBehaviour
 {
     [Header("Text")]
     public string displayTutorialText = "Enter tutorial text here";
     public List<string> displayBigTexts = new List<string> { "Enter big text here" };
+    public bool isPermanent = false; // part used in the corridor ONLY
 
     [Header("Canvas References")]
     public GameObject canvas;
@@ -71,18 +74,40 @@ public class DisplayTextTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // display big text first, if it doesn't exist, display tutorial text
-            if (displayBigTexts.Count > 0)
+            if (!isPermanent)
             {
-                ShowNextBigText();
+                // display big text first, if it doesn't exist, display tutorial text
+                if (displayBigTexts.Count > 0)
+                {
+                    ShowNextBigText();
+                }
+                else
+                {
+                    ShowTutorialText();
+                }
+                // disable collider so this trigger doesn't get triggered again
+                GetComponent<Collider>().enabled = false;
             }
-            else
-            {
-                ShowTutorialText();
-            }
+        }
+    }
 
-            // disable collider so this trigger doesn't get triggered again
-            GetComponent<Collider>().enabled = false;
+    // call this in observer (the corridor only)
+    public void DisplayAnomalyDispelText()
+    {
+        if (bigText)
+        {
+            bigText.text = displayBigTexts[0]; // hardcoded for the corridor, just displays the first big text
+            bigText.gameObject.SetActive(true);
+            audioSource.Play();
+            Invoke(nameof(HideAnomalyText), bigTextDisplayTime);
+        }
+    }
+
+    public void HideAnomalyText()
+    {
+        if (bigText)
+        {
+            bigText.text = "";
         }
     }
 

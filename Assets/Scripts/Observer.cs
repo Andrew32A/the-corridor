@@ -19,6 +19,7 @@ public class Observer : MonoBehaviour
 
     [Header("Tutorial Triggers")]
     public GameObject[] tutorialTriggers;
+    public GameObject anomalyDispelText;
 
     [Header("Cursed Objects")]
     public GameObject normalToothbrush;
@@ -66,6 +67,11 @@ public class Observer : MonoBehaviour
             enablePlayerFlashlight();
             player.GetComponent<PlayerMovement>().speed = 15f;
         }
+    }
+
+    public void DisplayAnomalyDispelText()
+    {
+        anomalyDispelText.GetComponent<DisplayTextTrigger>().DisplayAnomalyDispelText();
     }
 
     public void PlayerEnteredTeleporter()
@@ -168,6 +174,7 @@ public class Observer : MonoBehaviour
             currentCursedObjects--;
             cursedToothbrush.SetActive(false);
             normalToothbrush.SetActive(true);
+            DisplayAnomalyDispelText();
         }
 
         // bed zombie
@@ -176,6 +183,7 @@ public class Observer : MonoBehaviour
             currentCursedObjects--;
             cursedZombie.SetActive(false);
             normalZombie.SetActive(true);
+            DisplayAnomalyDispelText();
         }
 
         // high five man
@@ -184,6 +192,7 @@ public class Observer : MonoBehaviour
             currentCursedObjects--;
             cursedHighFiveMan.SetActive(false);
             normalHighFiveMan.SetActive(true);
+            DisplayAnomalyDispelText();
         }
 
         // animal paintings
@@ -192,6 +201,7 @@ public class Observer : MonoBehaviour
             currentCursedObjects--;
             cursedAnimalPaintings.SetActive(false);
             normalAnimalPaintings.SetActive(true);
+            DisplayAnomalyDispelText();
         }
 
         // mirror
@@ -200,6 +210,7 @@ public class Observer : MonoBehaviour
             currentCursedObjects--;
             cursedMirror.SetActive(false);
             normalMirror.SetActive(true);
+            DisplayAnomalyDispelText();
         }
 
         // chess board
@@ -208,6 +219,7 @@ public class Observer : MonoBehaviour
             currentCursedObjects--;
             cursedChessBoard.SetActive(false);
             normalChessBoard.SetActive(true);
+            DisplayAnomalyDispelText();
         }
 
         // plug
@@ -216,6 +228,7 @@ public class Observer : MonoBehaviour
             currentCursedObjects--;
             cursedPlug.SetActive(false);
             normalPlug.SetActive(true);
+            DisplayAnomalyDispelText();
         }
 
         // TODO: add more cursed objects here
