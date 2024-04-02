@@ -37,7 +37,7 @@ public class CrankFlashlight : MonoBehaviour
     private void Update()
     {
         // check for left mouse button input
-        if (Input.GetMouseButton(0) && !isOnCooldown)
+        if (Input.GetMouseButton(0) && !isOnCooldown && currentFlashlightCharges > 0)
         {
             if (!audioSource.isPlaying)
             {
@@ -108,9 +108,9 @@ public class CrankFlashlight : MonoBehaviour
     {
         if (!isCranking)
         {
-            // start dim and flicker for 1.5 seconds
+            // start dim and flicker for 2 seconds
             flashlight.intensity = 0.2f;
-            Invoke(nameof(EnableFullBrightness), 1.5f);
+            Invoke(nameof(EnableFullBrightness), 2f);
         }
 
         isCranking = true;
@@ -119,6 +119,7 @@ public class CrankFlashlight : MonoBehaviour
         // turn off and lockout the flashlight if cranking time exceeds maxCrankingTime
         if (crankingTime >= maxCrankingTime)
         {
+            currentFlashlightCharges--; // reduce flashlight charge by 1
             isCranking = false;
             isOnCooldown = true;
             flashlight.intensity = 0f;
@@ -128,6 +129,11 @@ public class CrankFlashlight : MonoBehaviour
 
     private void StopCranking()
     {
+        CancelInvoke(nameof(EnableFullBrightness)); // cancel full power if player stops cranking
+        if (isFullyPowered)
+        {
+            currentFlashlightCharges--; // reduce flashlight charge by 1 only when fully powered
+        }
         flashlight.intensity = 0f;
         isCranking = false;
         crankingTime = 0f;
@@ -136,7 +142,6 @@ public class CrankFlashlight : MonoBehaviour
 
     private void EnableFullBrightness()
     {
-        currentFlashlightCharges--; // reduce flashlight charge by 1
         isFullyPowered = true; // flashlight is fully powered
     }
 
