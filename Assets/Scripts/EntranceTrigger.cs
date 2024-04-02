@@ -7,6 +7,7 @@ public class EntranceTrigger : MonoBehaviour
     public GameObject entranceDoor;
     public GameObject exitDoor;
     public GameObject exitDoorTrigger;
+    public GameObject observer;
 
 
     void Start()
@@ -19,6 +20,13 @@ public class EntranceTrigger : MonoBehaviour
         {
             Debug.Log("Player entered the entrance trigger area");
             opencloseDoor doorScript = entranceDoor.GetComponent<opencloseDoor>();
+
+            // check if player looped once, then enable flashlight and tutorial trigger
+            if (observer.GetComponent<Observer>().loopCount == 1)
+            {
+                observer.GetComponent<Observer>().enableFlashlightTutorialTrigger();
+                observer.GetComponent<Observer>().enablePlayerFlashlight();
+            }
 
             // if door is open, close it
             if (doorScript.open)

@@ -8,6 +8,9 @@ public class Observer : MonoBehaviour
     [Header("Player")]
     public GameObject player;
     public GameObject playerFlashlight;
+    public GameObject flashlightCharge1;
+    public GameObject flashlightCharge2;
+    public GameObject flashlightCharge3;
 
     [Header("Doors")]
     public GameObject[] doors;
@@ -100,13 +103,6 @@ public class Observer : MonoBehaviour
             {
                 Debug.LogError("Door does not have an opencloseDoor component.", door);
             }
-        }
-
-        // check if player looped once, then enable flashlight and tutorial trigger
-        if (loopCount == 1)
-        {
-            enableFlashlightTutorialTrigger();
-            enablePlayerFlashlight();
         }
     }
 
@@ -242,13 +238,18 @@ public class Observer : MonoBehaviour
         // TODO: add more cursed objects here
     }
 
-    private void enableFlashlightTutorialTrigger()
+    // normally accesed by entrance trigger script
+    public void enableFlashlightTutorialTrigger()
     {
         tutorialTriggers[0].SetActive(true);
     }
 
-    private void enablePlayerFlashlight()
+    // normally accesed by entrance trigger script
+    public void enablePlayerFlashlight()
     {
         playerFlashlight.SetActive(true);
+        flashlightCharge1.SetActive(true);
+        flashlightCharge2.SetActive(true);
+        flashlightCharge3.SetActive(true);
     }
 }
