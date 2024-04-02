@@ -47,6 +47,9 @@ public class Observer : MonoBehaviour
     public int currentCursedObjects = 0;
     public int maxCursedObjectsForGameOver = 3; // need to change it in unity editor // TODO: bug where it's actually +1, dont have time to fix right now. it's because the teleporter looks at this value before it's updated
 
+    [Header("Dev Tools")]
+    public bool devMode = false;
+
     // void Start()
     // {
 
@@ -58,6 +61,7 @@ public class Observer : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             Debug.Log("Dev mode enabled");
+            devMode = true;
             enableFlashlightTutorialTrigger();
             enablePlayerFlashlight();
             player.GetComponent<PlayerMovement>().speed = 15f;
