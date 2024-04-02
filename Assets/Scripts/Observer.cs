@@ -87,10 +87,9 @@ public class Observer : MonoBehaviour
 
     public void PlayerEnteredTeleporter()
     {
-        // Debug.Log("Player entered the teleporter's trigger area");
         loopCount++;
         AddRandomCursedObject();
-        // Debug.Log("Loop count: " + loopCount);
+        playerFlashlight.GetComponent<CrankFlashlight>().RechargeFlashlight();
 
         foreach (GameObject door in doors)
         {

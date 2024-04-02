@@ -164,4 +164,9 @@ public class CrankFlashlight : MonoBehaviour
             }
         }
     }
+
+    public void RechargeFlashlight()
+    {
+        currentFlashlightCharges = maxFlashlightCharges;
+    }
 }
