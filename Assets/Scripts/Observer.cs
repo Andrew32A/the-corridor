@@ -6,6 +6,7 @@ public class Observer : MonoBehaviour
 {
     [Header("Player")]
     public GameObject player;
+    public GameObject playerFlashlight;
 
     [Header("Doors")]
     public GameObject[] doors;
@@ -15,6 +16,9 @@ public class Observer : MonoBehaviour
 
     [Header("Teleporters")]
     public GameObject[] teleporters;
+
+    [Header("Tutorial Triggers")]
+    public GameObject[] tutorialTriggers;
 
     [Header("Cursed Objects")]
     public GameObject normalToothbrush;
@@ -71,6 +75,13 @@ public class Observer : MonoBehaviour
             {
                 Debug.LogError("Door does not have an opencloseDoor component.", door);
             }
+        }
+
+        // check if player looped once, then enable flashlight and tutorial trigger
+        if (loopCount == 1)
+        {
+            enableFlashlightTutorialTrigger();
+            enablePlayerFlashlight();
         }
     }
 
@@ -199,4 +210,13 @@ public class Observer : MonoBehaviour
         // TODO: add more cursed objects here
     }
 
+    private void enableFlashlightTutorialTrigger()
+    {
+        tutorialTriggers[0].SetActive(true);
+    }
+
+    private void enablePlayerFlashlight()
+    {
+        playerFlashlight.SetActive(true);
+    }
 }
