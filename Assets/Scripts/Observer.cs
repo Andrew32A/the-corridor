@@ -52,10 +52,17 @@ public class Observer : MonoBehaviour
 
     // }
 
-    // void Update()
-    // {
-    //     Debug.Log("Current cursed objects: " + currentCursedObjects);
-    // }
+    void Update()
+    {
+        // dev mode (press 0 to enable)
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            Debug.Log("Dev mode enabled");
+            enableFlashlightTutorialTrigger();
+            enablePlayerFlashlight();
+            player.GetComponent<PlayerMovement>().speed = 15f;
+        }
+    }
 
     public void PlayerEnteredTeleporter()
     {
