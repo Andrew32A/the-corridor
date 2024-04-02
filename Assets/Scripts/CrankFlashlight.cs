@@ -7,21 +7,25 @@ public class CrankFlashlight : MonoBehaviour
     private bool isCranking = false;
     private float crankingTime = 0f;
     private float maxCrankingTime = 5f; // maximum time the flashlight stays on fully charged
-    private float cooldownTime = 3f; // time the flashlight stays off after being used too long
+    private float cooldownTime = 0.1f; // time the flashlight stays off after being used too long
     private bool isOnCooldown = false;
     private bool isFullyPowered = false;
     public AudioClip windupSound;
     private AudioSource audioSource;
 
+    public GameObject flashlightCharge1;
+    public GameObject flashlightCharge2;
+    public GameObject flashlightCharge3;
+
     // TODO: implement flashlight charges to prevent player from spamming
-    // public int currentFlashlightCharges = 0;
-    // public int maxFlashlightCharges = 3;
+    public int currentFlashlightCharges = 0;
+    public int maxFlashlightCharges = 3;
 
     private void Start()
     {
         flashlight.intensity = 0f;
 
-        // currentFlashlightCharges = maxFlashlightCharges;
+        currentFlashlightCharges = maxFlashlightCharges;
 
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
@@ -73,6 +77,31 @@ public class CrankFlashlight : MonoBehaviour
                 CastRay();
             }
         }
+
+        // update flashlight charge UI
+        switch (currentFlashlightCharges)
+        {
+            case 3:
+                flashlightCharge1.SetActive(true);
+                flashlightCharge2.SetActive(true);
+                flashlightCharge3.SetActive(true);
+                break;
+            case 2:
+                flashlightCharge1.SetActive(true);
+                flashlightCharge2.SetActive(true);
+                flashlightCharge3.SetActive(false);
+                break;
+            case 1:
+                flashlightCharge1.SetActive(true);
+                flashlightCharge2.SetActive(false);
+                flashlightCharge3.SetActive(false);
+                break;
+            case 0:
+                flashlightCharge1.SetActive(false);
+                flashlightCharge2.SetActive(false);
+                flashlightCharge3.SetActive(false);
+                break;
+        }
     }
 
     private void StartCranking()
@@ -107,6 +136,7 @@ public class CrankFlashlight : MonoBehaviour
 
     private void EnableFullBrightness()
     {
+        currentFlashlightCharges--; // reduce flashlight charge by 1
         isFullyPowered = true; // flashlight is fully powered
     }
 
