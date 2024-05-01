@@ -1,6 +1,7 @@
 # The Corridor
 
 <img src="https://github.com/Andrew32A/the-corridor/blob/main/Images/the-corridor-logo.png" align="center">
+<img src="https://github.com/Andrew32A/the-corridor/blob/main/Images/the-corridor-trailer.gif" align="center">
 
 A horror game inspired by games like P.T. and Observation Duty. The player is stuck in a looping corridor and must spot the difference between each loop! The game is built with Unity and C#.
 
