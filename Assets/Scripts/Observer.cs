@@ -136,19 +136,11 @@ public class CursedObject
     public string name;
     public GameObject normalObject;
     public GameObject cursedObject;
-    public List<GameObject> additionalCursedObjects; // list to hold additional hitboxes. eg. cursed objects that have 2 or more potential hitboxes for dispelling
 
     public void SetCursed(bool isCursed)
     {
         normalObject.SetActive(!isCursed);
         cursedObject.SetActive(isCursed);
-        if (additionalCursedObjects != null)
-        {
-            foreach (GameObject obj in additionalCursedObjects)
-            {
-                obj.SetActive(isCursed);
-            }
-        }
     }
 
     public bool IsCursedObject(GameObject obj)
@@ -160,23 +152,12 @@ public class CursedObject
             return true;
         }
 
-        if (additionalCursedObjects != null)
-        {
-            foreach (GameObject additionalCursedObject in additionalCursedObjects)
-            {
-                Debug.Log("Checking additional cursed object: " + additionalCursedObject.name);
-                if (additionalCursedObject == obj || CheckChildren(additionalCursedObject, obj.name))
-                {
-                    Debug.Log("Matched additional cursed object or its child: " + obj.name);
-                    return true;
-                }
-            }
-        }
         Debug.Log("No match found for object: " + obj.name);
         return false;
     }
 
-    // TODO: this is potentially dangerous and a performance issue. the reason it's here is because the cursed object has a child that is the hitbox that the raycast hits. this is a temporary solution and needs to be refactored
+    // TODO: this is potentially dangerous and a performance issue. the reason it's here is because the cursed object has a child that is the hitbox that the raycast hits.
+    // this is a temporary solution and needs to be refactored. TO BE FAIR, it's nice for when anomalies have multiple hitboxes for dispelling
     private bool CheckChildren(GameObject parent, string name)
     {
         foreach (Transform child in parent.transform)
