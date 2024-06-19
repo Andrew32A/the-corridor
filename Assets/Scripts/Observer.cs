@@ -53,8 +53,24 @@ public class Observer : MonoBehaviour
         if (devMode)
         {
             devModeTextObject.SetActive(true);
-            devModeText.text = "Active Anomalies: " + currentCursedObjects;
+            devModeText.text = "Active Anomalies: " + currentCursedObjects + "\n" + GetActiveCursedObjects();
         }
+    }
+
+    // get list of cursed objects for dev mode text
+    private string GetActiveCursedObjects()
+    {
+        List<string> activeCursedObjects = new List<string>();
+
+        foreach (CursedObject cursedObject in cursedObjects)
+        {
+            if (cursedObject.cursedObject.activeSelf)
+            {
+                activeCursedObjects.Add(cursedObject.name);
+            }
+        }
+
+        return "Active Cursed Objects: " + string.Join(", ", activeCursedObjects);
     }
 
     public void DisplayAnomalyDispelText()
