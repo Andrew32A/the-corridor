@@ -20,6 +20,7 @@ public class CrankFlashlight : MonoBehaviour
     // TODO: implement flashlight charges to prevent player from spamming
     public int currentFlashlightCharges = 0;
     public int maxFlashlightCharges = 3;
+    public bool didFlashlightHitAnomaly = false;
 
     private void Start()
     {
@@ -119,7 +120,11 @@ public class CrankFlashlight : MonoBehaviour
         // turn off and lockout the flashlight if cranking time exceeds maxCrankingTime
         if (crankingTime >= maxCrankingTime)
         {
-            currentFlashlightCharges--; // reduce flashlight charge by 1
+            // if flashlight does not hit an anomaly, reduce flashlight charge
+            if (!didFlashlightHitAnomaly)
+            {
+                currentFlashlightCharges--; // reduce flashlight charge by 1
+            }
             isCranking = false;
             isOnCooldown = true;
             flashlight.intensity = 0f;
@@ -130,10 +135,12 @@ public class CrankFlashlight : MonoBehaviour
     private void StopCranking()
     {
         CancelInvoke(nameof(EnableFullBrightness)); // cancel full power if player stops cranking
-        if (isFullyPowered)
+        // reduce flashlight charge only if flashlight is fully powered and did not hit an anomaly
+        if (!didFlashlightHitAnomaly && isFullyPowered)
         {
             currentFlashlightCharges--; // reduce flashlight charge by 1 only when fully powered
         }
+        didFlashlightHitAnomaly = false; // reset flag for checking if flashlight hit an anomaly
         flashlight.intensity = 0f;
         isCranking = false;
         crankingTime = 0f;
@@ -161,6 +168,7 @@ public class CrankFlashlight : MonoBehaviour
             {
                 Debug.Log(hit.collider.gameObject);
                 observer.DispelCursedObject(hit.collider.gameObject);
+                didFlashlightHitAnomaly = true;
             }
         }
     }
