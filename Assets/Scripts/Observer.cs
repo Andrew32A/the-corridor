@@ -26,26 +26,7 @@ public class Observer : MonoBehaviour
     public GameObject anomalyDispelText;
 
     [Header("Cursed Objects")]
-    public GameObject normalToothbrush;
-    public GameObject cursedToothbrush;
-
-    public GameObject normalZombie; // may need to rename it?
-    public GameObject cursedZombie;
-
-    public GameObject normalHighFiveMan;
-    public GameObject cursedHighFiveMan;
-
-    public GameObject normalAnimalPaintings;
-    public GameObject cursedAnimalPaintings;
-
-    public GameObject normalMirror;
-    public GameObject cursedMirror;
-
-    public GameObject normalChessBoard;
-    public GameObject cursedChessBoard;
-
-    public GameObject normalPlug;
-    public GameObject cursedPlug;
+    public List<CursedObject> cursedObjects = new List<CursedObject>();
 
     [Header("Global Values")]
     public int loopCount = 0;
@@ -57,10 +38,6 @@ public class Observer : MonoBehaviour
     public GameObject devModeTextObject;
     public TextMeshProUGUI devModeText;
 
-    // void Start()
-    // {
-
-    // }
 
     void Update()
     {
@@ -107,137 +84,37 @@ public class Observer : MonoBehaviour
 
     public void AddRandomCursedObject()
     {
-        int randomIndex = Random.Range(0, 7); // second arg needs to be +1 for some reason?
-        Debug.Log("Random index: " + randomIndex); // i have doubts that this is truely random... lol
+        int randomIndex = Random.Range(0, cursedObjects.Count);
+        CursedObject cursedObject = cursedObjects[randomIndex]; // i have doubts that this is truely random... lol
 
-        if (randomIndex == 0 && cursedToothbrush.activeSelf == false)
+        if (!cursedObject.cursedObject.activeSelf)
         {
-            Debug.Log("Added cursed toothbrush");
+            Debug.Log("Added cursed " + cursedObject.name);
             currentCursedObjects++;
-            cursedToothbrush.SetActive(true);
-            normalToothbrush.SetActive(false);
+            cursedObject.SetCursed(true);
         }
-
-        if (randomIndex == 1 && cursedZombie.activeSelf == false)
-        {
-            Debug.Log("Added cursed zombie");
-            currentCursedObjects++;
-            cursedZombie.SetActive(true);
-            normalZombie.SetActive(false);
-        }
-
-        if (randomIndex == 2 && cursedHighFiveMan.activeSelf == false)
-        {
-            Debug.Log("Added cursed high five man");
-            currentCursedObjects++;
-            cursedHighFiveMan.SetActive(true);
-            normalHighFiveMan.SetActive(false);
-        }
-
-        if (randomIndex == 3 && cursedAnimalPaintings.activeSelf == false)
-        {
-            Debug.Log("Added cursed animal paintings");
-            currentCursedObjects++;
-            cursedAnimalPaintings.SetActive(true);
-            normalAnimalPaintings.SetActive(false);
-        }
-
-        if (randomIndex == 4 && cursedMirror.activeSelf == false)
-        {
-            Debug.Log("Added cursed mirror");
-            currentCursedObjects++;
-            cursedMirror.SetActive(true);
-            normalMirror.SetActive(false);
-        }
-
-        if (randomIndex == 5 && cursedChessBoard.activeSelf == false)
-        {
-            Debug.Log("Added cursed chess board");
-            currentCursedObjects++;
-            cursedChessBoard.SetActive(true);
-            normalChessBoard.SetActive(false);
-        }
-
-        if (randomIndex == 6 && cursedPlug.activeSelf == false)
-        {
-            Debug.Log("Added cursed plug");
-            currentCursedObjects++;
-            cursedPlug.SetActive(true);
-            normalPlug.SetActive(false);
-        }
-
-        // Debug.Log("Current cursed objects: " + currentCursedObjects);
     }
 
-    public void DispelCursedObject(GameObject cursedObject)
+    public void DispelCursedObject(GameObject cursedGameObject)
     {
-        // toothbrush
-        if (cursedObject.name == "cursedToothbrush")
+        Debug.Log("Attempting to dispel object: " + cursedGameObject.name);
+
+        foreach (CursedObject cursedObject in cursedObjects)
         {
-            currentCursedObjects--;
-            cursedToothbrush.SetActive(false);
-            normalToothbrush.SetActive(true);
-            DisplayAnomalyDispelText();
+            Debug.Log("Checking against cursed object: " + cursedObject.cursedObject.name);
+            if (cursedObject.IsCursedObject(cursedGameObject))
+            {
+                currentCursedObjects--;
+                cursedObject.SetCursed(false);
+                DisplayAnomalyDispelText();
+                Debug.Log("Dispelled object: " + cursedGameObject.name);
+                return;
+            }
         }
 
-        // bed zombie
-        if (cursedObject.name == "cursedZombie")
-        {
-            currentCursedObjects--;
-            cursedZombie.SetActive(false);
-            normalZombie.SetActive(true);
-            DisplayAnomalyDispelText();
-        }
-
-        // high five man
-        if (cursedObject.name == "cursedHighFiveMan1" || cursedObject.name == "cursedHighFiveMan2")
-        {
-            currentCursedObjects--;
-            cursedHighFiveMan.SetActive(false);
-            normalHighFiveMan.SetActive(true);
-            DisplayAnomalyDispelText();
-        }
-
-        // animal paintings
-        if (cursedObject.name == "cursedAnimalPaintings1" || cursedObject.name == "cursedAnimalPaintings2")
-        {
-            currentCursedObjects--;
-            cursedAnimalPaintings.SetActive(false);
-            normalAnimalPaintings.SetActive(true);
-            DisplayAnomalyDispelText();
-        }
-
-        // mirror
-        if (cursedObject.name == "cursedMirror")
-        {
-            currentCursedObjects--;
-            cursedMirror.SetActive(false);
-            normalMirror.SetActive(true);
-            DisplayAnomalyDispelText();
-        }
-
-        // chess board
-        if (cursedObject.name == "cursedChessBoard")
-        {
-            currentCursedObjects--;
-            cursedChessBoard.SetActive(false);
-            normalChessBoard.SetActive(true);
-            DisplayAnomalyDispelText();
-        }
-
-        // plug
-        if (cursedObject.name == "cursedPlug")
-        {
-            currentCursedObjects--;
-            cursedPlug.SetActive(false);
-            normalPlug.SetActive(true);
-            DisplayAnomalyDispelText();
-        }
-
-        // TODO: add more cursed objects here
+        Debug.LogWarning("Cursed object not found: " + cursedGameObject.name);
     }
 
-    // normally accesed by entrance trigger script
     public void enableFlashlightTutorialTrigger()
     {
         tutorialTriggers[0].SetActive(true);
@@ -250,5 +127,65 @@ public class Observer : MonoBehaviour
         flashlightCharge1.SetActive(true);
         flashlightCharge2.SetActive(true);
         flashlightCharge3.SetActive(true);
+    }
+}
+
+[System.Serializable]
+public class CursedObject
+{
+    public string name;
+    public GameObject normalObject;
+    public GameObject cursedObject;
+    public List<GameObject> additionalCursedObjects; // list to hold additional hitboxes. eg. cursed objects that have 2 or more potential hitboxes for dispelling
+
+    public void SetCursed(bool isCursed)
+    {
+        normalObject.SetActive(!isCursed);
+        cursedObject.SetActive(isCursed);
+        if (additionalCursedObjects != null)
+        {
+            foreach (GameObject obj in additionalCursedObjects)
+            {
+                obj.SetActive(isCursed);
+            }
+        }
+    }
+
+    public bool IsCursedObject(GameObject obj)
+    {
+        // check the primary cursed object and its children
+        if (cursedObject == obj || CheckChildren(cursedObject, obj.name))
+        {
+            Debug.Log("Matched primary cursed object or its child: " + obj.name);
+            return true;
+        }
+
+        if (additionalCursedObjects != null)
+        {
+            foreach (GameObject additionalCursedObject in additionalCursedObjects)
+            {
+                Debug.Log("Checking additional cursed object: " + additionalCursedObject.name);
+                if (additionalCursedObject == obj || CheckChildren(additionalCursedObject, obj.name))
+                {
+                    Debug.Log("Matched additional cursed object or its child: " + obj.name);
+                    return true;
+                }
+            }
+        }
+        Debug.Log("No match found for object: " + obj.name);
+        return false;
+    }
+
+    // TODO: this is potentially dangerous and a performance issue. the reason it's here is because the cursed object has a child that is the hitbox that the raycast hits. this is a temporary solution and needs to be refactored
+    private bool CheckChildren(GameObject parent, string name)
+    {
+        foreach (Transform child in parent.transform)
+        {
+            if (child.gameObject.name == name)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

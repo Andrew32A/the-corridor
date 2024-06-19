@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 3186
+  controlID: 7746
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 3187
+  controlID: 7747
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 3188
+  controlID: 7748
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -227,10 +227,10 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
+      scrollPos: {x: 0, y: 270}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 247effff347effff447effff487effff507effff5a7effff5e7effff0c81ffff1c3b0100c24f010074580100905d0100e66601009c680100da810100948f0100
+      m_ExpandedIDs: 247effff347effff447effff487effff507effff5a7effff5e7effff0c81ffff003901001c3b01004a3d0100a44001001a42010038430100504801000c4e0100c24f01007052010028540100ce55010074580100c85b0100905d010072660100366701009c680100e4700100867b0100da810100948f0100bc9301004ab401002aba0100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -542,9 +542,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -19.881407, y: 5.69806, z: 0.5573009}
+    m_Target: {x: 10.563778, y: -0.082467616, z: 7.544637}
     speed: 2
-    m_Value: {x: -19.881407, y: 5.69806, z: 0.5573009}
+    m_Value: {x: 10.563778, y: -0.082467616, z: 7.544637}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -591,9 +591,9 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.0063613085, y: 0.7329086, z: -0.0067984536, w: -0.6803143}
+    m_Target: {x: -0.1174146, y: -0.6563197, z: 0.10446784, w: -0.7379791}
     speed: 2
-    m_Value: {x: -0.0063610887, y: 0.7328833, z: -0.0067982185, w: -0.68029076}
+    m_Value: {x: -0.117410585, y: -0.6562972, z: 0.10446426, w: -0.73795384}
   m_Size:
     m_Target: 10
     speed: 2
@@ -709,8 +709,8 @@ MonoBehaviour:
     y: 892
     width: 1955
     height: 407
-  m_MinSize: {x: 101, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 11}
@@ -760,21 +760,21 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Brick Project Studio/Apartment Kit/Common/Models
+    - Assets/Images
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Brick Project Studio/Apartment Kit/Common/Models
+  - Assets/Images
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\andre\OneDrive\Documents\Dev\the-corridor
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: e4bb0100
-    m_LastClickedID: 113636
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: d4290100
+    m_LastClickedID: 76244
     m_ExpandedIDs: 00000000ce29010000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -951,7 +951,7 @@ MonoBehaviour:
     m_CachedPref: 160
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: -1
+  m_LastInspectedObjectInstanceID: 94080
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
