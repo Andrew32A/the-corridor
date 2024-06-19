@@ -54,6 +54,12 @@ public class Observer : MonoBehaviour
         {
             devModeTextObject.SetActive(true);
             devModeText.text = "Active Anomalies: " + currentCursedObjects + "\n" + GetActiveCursedObjects();
+
+            // press 1 to spawn all anomalies
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                SpawnAllAnomalies();
+            }
         }
     }
 
@@ -76,6 +82,15 @@ public class Observer : MonoBehaviour
     public void DisplayAnomalyDispelText()
     {
         anomalyDispelText.GetComponent<DisplayTextTrigger>().DisplayAnomalyDispelText();
+    }
+
+    public void SpawnAllAnomalies()
+    {
+        Debug.Log("Spawned all anomalies");
+        foreach (CursedObject cursedObject in cursedObjects)
+        {
+            AddRandomCursedObject();
+        }
     }
 
     public void PlayerEnteredTeleporter()
