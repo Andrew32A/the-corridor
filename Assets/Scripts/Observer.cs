@@ -84,14 +84,26 @@ public class Observer : MonoBehaviour
 
     public void AddRandomCursedObject()
     {
-        int randomIndex = Random.Range(0, cursedObjects.Count);
-        CursedObject cursedObject = cursedObjects[randomIndex]; // i have doubts that this is truely random... lol
+        // list of cursed objects that have not spawned yet
+        List<CursedObject> availableCursedObjects = cursedObjects.FindAll(obj => !obj.hasSpawned);
+
+        // if there are no more cursed objects to spawn, return
+        if (availableCursedObjects.Count == 0)
+        {
+            Debug.LogWarning("No more cursed objects to spawn.");
+            return;
+        }
+
+        // get a random cursed object from the available cursed objects list
+        int randomIndex = Random.Range(0, availableCursedObjects.Count);
+        CursedObject cursedObject = availableCursedObjects[randomIndex]; // i have doubts that this is truely random... lol
 
         if (!cursedObject.cursedObject.activeSelf)
         {
             Debug.Log("Added cursed " + cursedObject.name);
             currentCursedObjects++;
             cursedObject.SetCursed(true);
+            cursedObject.hasSpawned = true;
         }
     }
 
@@ -136,6 +148,7 @@ public class CursedObject
     public string name;
     public GameObject normalObject;
     public GameObject cursedObject;
+    public bool hasSpawned = false;
 
     public void SetCursed(bool isCursed)
     {
