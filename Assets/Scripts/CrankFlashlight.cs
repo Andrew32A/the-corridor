@@ -17,7 +17,7 @@ public class CrankFlashlight : MonoBehaviour
     public GameObject flashlightCharge2;
     public GameObject flashlightCharge3;
 
-    // TODO: implement flashlight charges to prevent player from spamming
+    // flashlight charges to prevent player from spamming
     public int currentFlashlightCharges = 0;
     public int maxFlashlightCharges = 3;
     public bool didFlashlightHitAnomaly = false;
